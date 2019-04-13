@@ -17,6 +17,7 @@ class App extends Component {
           <Route path='/' exact component={Users} />
           <Route path='/user/:id' exact component={UserDetails} />
           <Route path='/user/:id/:postId' exact component={PostDetails} />
+          <Route render={() => <h2 style={{margin: '0 auto'}}>This route does not exist</h2>}/>
         </Layout>
       </BrowserRouter>
     );
