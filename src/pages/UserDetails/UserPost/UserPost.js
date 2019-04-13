@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import classes from './UserPost.module.scss';
 
@@ -25,9 +26,9 @@ const userPost = props => {
       </p>
       <Link className={disableLink ? classes.DisabledLink : ''}
         to={{
-        pathname: `${props.postsPath}/${props.post.id}`,
+        pathname: `${props.location.pathname}/${props.post.id}`,
         state: {
-          userName: props.userName,
+          userName: props.location.state.userName,
           postTitle: props.post.title,
           postText: props.post.body
         }
@@ -38,4 +39,4 @@ const userPost = props => {
   )
 };
 
-export default userPost;
+export default withRouter(userPost);

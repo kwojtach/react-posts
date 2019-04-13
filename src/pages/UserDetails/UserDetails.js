@@ -36,9 +36,7 @@ class UserDetails extends Component {
           post={post}
           deleteUserPost={this.props.onDeleteUserPost}
           loadingDeleting={this.props.loadingDeleting}
-          deletingPostId={this.props.deletingPostId}
-          postsPath={this.props.location.pathname}
-          userName={this.props.location.state.userName} />
+          deletingPostId={this.props.deletingPostId} />
       ))
     }
 
@@ -58,10 +56,7 @@ class UserDetails extends Component {
             onSubmitForm={this.props.onAddUserPost}
             formSubmitted={this.props.loadingAddingPost} />
         </Modal>
-        <UserHeader
-          buttonAction={() => this.onStartAddingPostHandler()}
-          onGoBack={this.props.history.goBack}
-          userName={this.props.location.state.userName} />
+        <UserHeader buttonAction={() => this.onStartAddingPostHandler()} />
         {posts}
       </>
     );

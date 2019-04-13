@@ -68,8 +68,6 @@ class PostDetails extends Component {
         </Modal>
         <UserHeader
           buttonAction={() => this.props.onDeleteUserPost(this.props.match.params.postId, this.props.history.goBack)}
-          onGoBack={this.props.history.goBack}
-          userName={this.props.location.state.userName}
           postDetails />
         <div className={classes.PostDetails}>
           <h2>{this.props.location.state.postTitle}</h2>
