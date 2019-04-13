@@ -11,6 +11,7 @@ import {
   deleteUserPost,
   addUserPost
 } from '../../store/actions/posts';
+import withError from "../../hoc/withError/withError";
 
 class UserDetails extends Component {
   componentDidMount() {
@@ -79,4 +80,4 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(withError(UserDetails));

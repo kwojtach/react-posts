@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import User from './User/User';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import { fetchUsers } from '../../store/actions/users';
+import withError from '../../hoc/withError/withError';
 
 class Users extends Component {
   componentDidMount() {
@@ -41,4 +42,4 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(mapStateToProps, mapDispatchToProps)(withError(Users));

@@ -14,6 +14,7 @@ import {
   addComment
 } from '../../store/actions/comments';
 import {deleteUserPost} from "../../store/actions/posts";
+import withError from "../../hoc/withError/withError";
 
 class PostDetails extends Component {
   // variable created to stop "setState" when component will unmount (when post was deleted)
@@ -112,4 +113,4 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(withError(PostDetails));
