@@ -51,9 +51,7 @@ class PostDetails extends Component {
   render() {
     return (
       <>
-        <Modal
-          show={this.state.addingComment}
-          closeModal={this.onStartAddingCommentHandler} >
+        <Modal show={this.state.addingComment} >
           <AddForm
             title={'Add comment'}
             fields={[

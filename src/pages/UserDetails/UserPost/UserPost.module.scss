@@ -13,9 +13,22 @@
     box-shadow: 0 1rem 2.5rem rgba($shadow-color, 0.2);
   }
 
-  span {
-    margin-left: 1rem;
-    font-size: 2rem;
+  div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+
+    div {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    span {
+      margin-left: 1rem;
+      font-size: 2rem;
+    }
   }
 
   svg {

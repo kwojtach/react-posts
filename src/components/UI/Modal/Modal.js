@@ -11,9 +11,7 @@ const modal = props => {
 
   return (
     <>
-      <Backdrop
-        show={props.show}
-        close={props.closeModal} />
+      <Backdrop show={props.show} />
       <div
         className={classes.Modal}
         style={modalStyle} >

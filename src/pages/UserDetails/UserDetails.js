@@ -42,9 +42,7 @@ class UserDetails extends Component {
 
     return (
       <>
-        <Modal
-          show={this.state.addingPost}
-          closeModal={this.onStartAddingPostHandler} >
+        <Modal show={this.state.addingPost} >
           <AddForm
             title={'Add post'}
             fields={[
