@@ -1,0 +1,35 @@
+.UserPost {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: .2s;
+
+  &:hover {
+    box-shadow: 0 1rem 2.5rem rgba(51, 51, 51, 0.2);
+  }
+
+  span {
+    margin-left: 1rem;
+    font-size: 2rem;
+  }
+
+  svg {
+    color: lightskyblue;
+    transition: .2s;
+    &:hover {
+      color: deepskyblue;
+      cursor: pointer;
+    }
+  }
+
+  .DisabledLink {
+    pointer-events: none;
+    svg {
+      color: darkred;
+    }
+  }
+}

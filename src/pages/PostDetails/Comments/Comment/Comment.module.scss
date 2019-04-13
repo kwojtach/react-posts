@@ -1,0 +1,23 @@
+.Comment {
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: .2s;
+
+  &:hover {
+    box-shadow: 0 1rem 2.5rem rgba(51, 51, 51, 0.2);
+  }
+
+  span {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+}

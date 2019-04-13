@@ -1,0 +1,30 @@
+.User {
+  width: 22%;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  transition: .2s;
+
+  &:hover {
+    box-shadow: 0 1rem 2.5rem rgba(51, 51, 51, 0.2);
+  }
+
+  h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    margin-bottom: 1rem;
+    li {
+      margin-bottom: .5rem;
+      font-size: 1.2rem;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+.AddForm {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+
+  h3 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .InputContainer {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: 1.5rem;
+
+      input,
+      textarea {
+        width: 70%;
+        font-size: inherit;
+        border: 1px solid #aaa;
+      }
+      textarea {
+        height: 15rem;
+        resize: vertical;
+      }
+    }
+
+    p {
+      margin-left: 30%;
+      font-size: 1.5rem;
+      color: darkred;
+    }
+  }
+
+  .ButtonsContainer {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    button,
+    span {
+      margin: 0;
+    }
+  }
+}

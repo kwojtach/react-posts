@@ -1,0 +1,38 @@
+.UserHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  p {
+    display: flex;
+    align-items: center;
+    color: lightskyblue;
+    transition: .2s;
+    &:hover {
+      color: deepskyblue;
+      cursor: pointer;
+      svg {
+        color: deepskyblue;
+      }
+    }
+  }
+
+  span {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+  }
+
+  svg {
+    color: lightskyblue;
+    transition: .2s;
+    &:hover {
+      color: deepskyblue;
+      cursor: pointer;
+    }
+  }
+}
