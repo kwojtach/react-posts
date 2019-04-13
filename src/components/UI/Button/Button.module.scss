@@ -1,7 +1,9 @@
+@import '../../../styles/colors';
+
 .Button {
   padding: 1.8rem 3rem;
   font-size: 1.5rem;
-  background-color: lightskyblue;
+  background-color: $color-primary;
   border: none;
   color: #fff;
   cursor: pointer;
@@ -11,7 +13,7 @@
   margin: 0 auto;
 
   &:hover {
-    background-color: deepskyblue;
+    background-color: $color-primary-dark;
   }
 
   &:disabled {

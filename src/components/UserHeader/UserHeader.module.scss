@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .UserHeader {
   width: 100%;
   display: flex;
@@ -11,13 +13,13 @@
   p {
     display: flex;
     align-items: center;
-    color: lightskyblue;
+    color: $color-primary;
     transition: .2s;
     &:hover {
-      color: deepskyblue;
+      color: $color-primary-dark;
       cursor: pointer;
       svg {
-        color: deepskyblue;
+        color: $color-primary-dark;
       }
     }
   }
@@ -28,10 +30,10 @@
   }
 
   svg {
-    color: lightskyblue;
+    color: $color-primary;
     transition: .2s;
     &:hover {
-      color: deepskyblue;
+      color: $color-primary-dark;
       cursor: pointer;
     }
   }
