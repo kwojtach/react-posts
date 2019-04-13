@@ -18,6 +18,7 @@ const userPost = props => {
     <div className={classes.UserPost}>
       <p>
         <FontAwesomeIcon
+          className={disableLink ? classes.DisabledLink : ''}
           onClick={() => props.deleteUserPost(props.post.id)}
           icon="trash-alt" size="2x" />
         <span>{title}</span>
