@@ -18,10 +18,10 @@ import withError from "../../hoc/withError/withError";
 
 class PostDetails extends Component {
   // variable created to stop "setState" when component will unmount (when post was deleted)
-  _isMounted = false;
+  _isUnMounted = false;
 
   componentWillReceiveProps(nextProps){
-    if (this._isMounted) {
+    if (!this._isUnMounted) {
       if (nextProps.commentsLoaded) {
         this.setState({
           showComments: true
@@ -32,7 +32,7 @@ class PostDetails extends Component {
 
   componentWillUnmount() {
     this.props.onClearCommentsLoaded();
-    this._isMounted = true;
+    this._isUnMounted = true;
   }
 
   state = {
