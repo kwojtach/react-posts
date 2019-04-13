@@ -25,19 +25,19 @@ const userPost = props => {
             onClick={() => props.deleteUserPost(props.post.id)}
             icon="trash-alt" size="2x" />
         </Tooltip>
-          <Tooltip background={'#333'} color={'#fff'} content={(<h4>{title}</h4>)}>
-            <span>{title}</span>
-          </Tooltip>
+        <Tooltip background={'#333'} color={'#fff'} content={(<h4>{title}</h4>)}>
+          <span>{title}</span>
+        </Tooltip>
       </div>
       <Link className={disableLink ? classes.DisabledLink : ''}
-        to={{
-        pathname: `${props.location.pathname}/${props.post.id}`,
-        state: {
-          userName: props.location.state.userName,
-          postTitle: props.post.title,
-          postText: props.post.body
-        }
-      }} >
+            to={{
+              pathname: `${props.location.pathname}/${props.post.id}`,
+              state: {
+                userName: props.location.state.userName,
+                postTitle: props.post.title,
+                postText: props.post.body
+              }
+            }} >
         <FontAwesomeIcon icon="arrow-right" size="2x" />
       </Link>
     </div>

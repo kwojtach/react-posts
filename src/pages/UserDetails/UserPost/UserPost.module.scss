@@ -7,6 +7,10 @@
   justify-content: space-between;
   margin-bottom: 1rem;
   transition: .2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   @include containerStyle;
 
   &:hover {
@@ -14,20 +18,24 @@
   }
 
   div {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     display: flex;
+    width: 95%;
 
     div {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+      width: initial;
+      &:nth-of-type(2) {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
-    span {
-      margin-left: 1rem;
-      font-size: 2rem;
+      span {
+        margin-left: 1rem;
+        font-size: 2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 
