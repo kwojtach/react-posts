@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 import api from '../../api';
@@ -43,7 +43,6 @@ const withError = WithErrorComponent => {
               onClose: this.onErrorCloseHandler,
               toastId: 3
             }) : null}
-          <ToastContainer style={{fontSize: '1.5rem'}}/>
           <WithErrorComponent {...this.props}/>
         </>
       )
