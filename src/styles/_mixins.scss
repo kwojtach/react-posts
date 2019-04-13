@@ -1,0 +1,11 @@
+@import 'colors';
+
+@mixin containerStyle {
+  background-color: $box-background-color;
+  border: 1px solid $border-color;
+  padding: 1rem;
+
+  &:hover {
+    box-shadow: 0 1rem 2.5rem rgba($shadow-color, 0.2);
+  }
+}

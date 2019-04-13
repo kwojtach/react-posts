@@ -1,16 +1,11 @@
 @import '../../../styles/colors';
+@import '../../../styles/mixins';
 
 .User {
   width: 22%;
   margin-bottom: 3rem;
-  padding: 2rem;
-  background-color: $box-background-color;
-  border: 1px solid $border-color;
   transition: .2s;
-
-  &:hover {
-    box-shadow: 0 1rem 2.5rem rgba($shadow-color, 0.2);
-  }
+  @include containerStyle;
 
   h2 {
     margin-bottom: 1.5rem;
