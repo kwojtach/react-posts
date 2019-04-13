@@ -16,16 +16,22 @@ import {
 import {deleteUserPost} from "../../store/actions/posts";
 
 class PostDetails extends Component {
+  // variable created to stop "setState" when component will unmount (when post was deleted)
+  _isMounted = false;
+
   componentWillReceiveProps(nextProps){
-    if (nextProps.commentsLoaded) {
-      this.setState({
-        showComments: true
-      })
+    if (this._isMounted) {
+      if (nextProps.commentsLoaded) {
+        this.setState({
+          showComments: true
+        })
+      }
     }
   }
 
   componentWillUnmount() {
     this.props.onClearCommentsLoaded();
+    this._isMounted = true;
   }
 
   state = {

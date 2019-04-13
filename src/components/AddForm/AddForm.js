@@ -23,7 +23,7 @@ import classes from './AddForm.module.scss';
  *    }
  * closeForm - optional function e.g. to close Modal
  * onSubmitForm - function executed on submit form e.g. adding a Post
- * formSubmitted - value to disable submit button (true or false)
+ * formSubmitted - value to disable submit button while sending request (true or false)
  */
 const addForm = props => {
   return (
@@ -67,7 +67,7 @@ const addForm = props => {
 
           <div className={classes.ButtonsContainer}>
             <Button type='reset' clicked={() => props.closeForm()}>Cancel</Button>
-            <Button type='submit' disabled={props.formSubmitted}>Save</Button>
+            <Button type='submit' disabled={props.formSubmitted}>{!props.formSubmitted ? 'Save' : 'Loading...'}</Button>
           </div>
         </Form>
       </Formik>

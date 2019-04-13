@@ -61,7 +61,7 @@ export const deleteUserPostSuccess = postId => {
 export const addUserPost = postData => {
   return dispatch => {
     dispatch(addUserPostStart());
-    api.post('/posts', {...postData })
+    api.post('/posts', {...postData})
       .then(response => {
         dispatch(addUserPostSuccess(response.data))
       })

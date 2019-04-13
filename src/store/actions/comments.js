@@ -42,7 +42,7 @@ export const clearCommentsLoaded = () => {
 export const addComment = commentData => {
   return dispatch => {
     dispatch(addCommentStart());
-    api.post('/comments', {...commentData })
+    api.post('/comments', {...commentData})
       .then(response => {
         dispatch(addCommentSuccess(response.data))
       })
