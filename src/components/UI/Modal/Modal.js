@@ -5,7 +5,7 @@ import classes from './Modal.module.scss';
 
 const modal = props => {
   const modalStyle = {
-    transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',
+    transform: props.show ? 'translate(-50%, -50%)' : 'translate(-50%, -100vh)',
     opacity: props.show ? '1' : '0'
   };
 
