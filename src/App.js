@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Users from './pages/Users/Users';
 import UserDetails from './pages/UserDetails/UserDetails';
@@ -14,10 +14,12 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Layout>
-          <Route path='/' exact component={Users} />
-          <Route path='/user/:id' exact component={UserDetails} />
-          <Route path='/user/:id/:postId' exact component={PostDetails} />
-          <Route render={() => <h2 style={{margin: '0 auto'}}>This route does not exist</h2>}/>
+          <Switch>
+            <Route path='/' exact component={Users} />
+            <Route path='/user/:id' exact component={UserDetails} />
+            <Route path='/user/:id/:postId' exact component={PostDetails} />
+            <Route render={() => <h2 style={{margin: '0 auto'}}>This route does not exist</h2>}/>
+          </Switch>
         </Layout>
       </BrowserRouter>
     );
