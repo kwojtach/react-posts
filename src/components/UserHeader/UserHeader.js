@@ -10,7 +10,10 @@ const userHeader = props => {
         <span>Back</span>
       </p>
       <h2>{props.userName}</h2>
-      <FontAwesomeIcon onClick={() => props.startAdding()} icon="plus-circle" size="3x" />
+      {props.postDetails ?
+        <FontAwesomeIcon onClick={props.buttonAction} icon="times-circle" size="3x" />
+        : <FontAwesomeIcon onClick={props.buttonAction} icon="plus-circle" size="3x" />
+      }
     </div>
   )
 };

@@ -59,7 +59,7 @@ class UserDetails extends Component {
             formSubmitted={this.props.loadingAddingPost} />
         </Modal>
         <UserHeader
-          startAdding={this.onStartAddingPostHandler}
+          buttonAction={() => this.onStartAddingPostHandler()}
           onGoBack={this.props.history.goBack}
           userName={this.props.location.state.userName} />
         {posts}

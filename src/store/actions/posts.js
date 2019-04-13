@@ -32,11 +32,12 @@ export const fetchUserPostsSuccess = posts => {
   };
 };
 
-export const deleteUserPost = postId => {
+export const deleteUserPost = (postId, changeRoute) => {
   return dispatch => {
     dispatch(deleteUserPostStart(postId));
     api.delete(`/posts/${postId}`)
       .then(response => {
+        if (changeRoute) changeRoute();
         dispatch(deleteUserPostSuccess(postId));
       })
       .catch(error => console.error(error));

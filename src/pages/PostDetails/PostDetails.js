@@ -13,6 +13,7 @@ import {
   clearCommentsLoaded,
   addComment
 } from '../../store/actions/comments';
+import {deleteUserPost} from "../../store/actions/posts";
 
 class PostDetails extends Component {
   componentWillReceiveProps(nextProps){
@@ -66,9 +67,10 @@ class PostDetails extends Component {
             formSubmitted={this.props.loadingAddingComment} />
         </Modal>
         <UserHeader
-          startAdding={this.onStartAddingCommentHandler}
+          buttonAction={() => this.props.onDeleteUserPost(this.props.match.params.postId, this.props.history.goBack)}
           onGoBack={this.props.history.goBack}
-          userName={this.props.location.state.userName} />
+          userName={this.props.location.state.userName}
+          postDetails />
         <div className={classes.PostDetails}>
           <h2>{this.props.location.state.postTitle}</h2>
           <p>{this.props.location.state.postText}</p>
@@ -94,7 +96,8 @@ const mapStateToProps = state => {
     comments: state.comments.comments,
     loadingComments: state.comments.loadingComments,
     commentsLoaded: state.comments.commentsLoaded,
-    loadingAddingComment: state.comments.loadingAddingComment
+    loadingAddingComment: state.comments.loadingAddingComment,
+    loadingDeleting: state.posts.loadingDeleting,
   }
 };
 
@@ -102,7 +105,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onFetchComments: (postId, loaded) => dispatch(fetchComments(postId, loaded)),
     onClearCommentsLoaded: () => dispatch(clearCommentsLoaded()),
-    onAddComment: commentData => dispatch(addComment(commentData))
+    onAddComment: commentData => dispatch(addComment(commentData)),
+    onDeleteUserPost: (postId, changeRoute) => dispatch(deleteUserPost(postId, changeRoute))
   }
 };
 
