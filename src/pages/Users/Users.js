@@ -6,6 +6,8 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import { fetchUsers } from '../../store/actions/users';
 import withError from '../../hoc/withError/withError';
 
+import classes from './Users.module.scss';
+
 class Users extends Component {
   componentDidMount() {
     this.props.onFetchUsers();
@@ -22,9 +24,9 @@ class Users extends Component {
     }
 
     return (
-      <>
+      <div className={classes.Users}>
         {users}
-      </>
+      </div>
     );
   }
 }

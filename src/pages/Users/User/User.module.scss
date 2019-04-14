@@ -4,8 +4,24 @@
 .User {
   width: 22%;
   margin-bottom: 3rem;
+  margin-right: 4%;
   transition: .2s;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
   @include containerStyle;
+
+  &:nth-of-type(4n) {
+    margin-right: 0;
+  }
+
+  a {
+    text-decoration: none;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
 
   h2 {
     font-size: 1.8rem;
