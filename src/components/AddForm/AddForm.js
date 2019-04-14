@@ -66,7 +66,7 @@ const addForm = props => {
           ))}
 
           <div className={classes.ButtonsContainer}>
-            <Button type='reset' clicked={() => props.closeForm()}>Cancel</Button>
+            <Button type='reset' whiteButton clicked={() => props.closeForm()}>Cancel</Button>
             <Button type='submit' disabled={props.formSubmitted}>{!props.formSubmitted ? 'Save' : 'Loading...'}</Button>
           </div>
         </Form>
