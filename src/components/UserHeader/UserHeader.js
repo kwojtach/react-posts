@@ -3,7 +3,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { withRouter } from 'react-router-dom';
 
 import classes from './UserHeader.module.scss';
-import Tooltip from 'react-tooltip-lite';
 
 const userHeader = props => {
   return (
@@ -14,12 +13,10 @@ const userHeader = props => {
       </p>
       <h2>{props.location.state.userName}</h2>
       {props.postDetails ?
-        <Tooltip background={'#333'} color={'#fff'} content={(<h4>Delete post</h4>)}>
-          <FontAwesomeIcon onClick={props.buttonAction} icon="times-circle" size="3x" />
-        </Tooltip>
-        : <Tooltip background={'#333'} color={'#fff'} content={(<h4>Add post</h4>)}>
-          <FontAwesomeIcon onClick={props.buttonAction} icon="plus-circle" size="3x" />
-        </Tooltip>
+        <>{props.loadingDeleting ?
+          <span style={{fontSize: '1.5rem'}}>Deleting...</span>
+          : <FontAwesomeIcon onClick={props.buttonAction} icon="times-circle" size="3x" />}</>
+      : <FontAwesomeIcon onClick={props.buttonAction} icon="plus-circle" size="3x" />
       }
     </div>
   )

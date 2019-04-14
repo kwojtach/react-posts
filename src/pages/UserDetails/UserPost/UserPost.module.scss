@@ -21,21 +21,12 @@
     display: flex;
     width: 95%;
 
-    div {
-      width: initial;
-      &:nth-of-type(2) {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      span {
-        margin-left: 1rem;
-        font-size: 2rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
+    span {
+      margin-left: 1rem;
+      font-size: 2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 

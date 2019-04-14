@@ -31,8 +31,8 @@ class PostDetails extends Component {
   }
 
   componentWillUnmount() {
-    this.props.onClearCommentsLoaded();
     this._isUnMounted = true;
+    this.props.onClearCommentsLoaded();
   }
 
   state = {
@@ -73,6 +73,7 @@ class PostDetails extends Component {
         </Modal>
         <UserHeader
           buttonAction={() => this.props.onDeleteUserPost(this.props.match.params.postId, this.props.history.goBack)}
+          loadingDeleting={this.props.loadingDeleting}
           postDetails />
         <div className={classes.PostDetails}>
           <h2>{this.props.location.state.postTitle}</h2>
