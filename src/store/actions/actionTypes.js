@@ -1,31 +1,22 @@
-export const FETCH_USERS = 'FETCH_USERS';
-export const FETCH_USERS_START = 'FETCH_USERS_START';
-export const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS';
-export const FETCH_USERS_FAIL = 'FETCH_USERS_FAIL';
+const actionTypeCreator = (name, type) => {
+  switch(type) {
+    case('sync'):
+      return name;
+    case('async'):
+      return {
+        START:   `${name}_START`,
+        SUCCESS: `${name}_SUCCESS`,
+        FAIL:    `${name}_FAIL`,
+      };
+    default:
+      return name;
+  }
+};
 
-export const FETCH_USER_POSTS = 'FETCH_USER_POSTS';
-export const FETCH_USER_POSTS_START = 'FETCH_POSTS_USER_START';
-export const FETCH_USER_POSTS_SUCCESS = 'FETCH_POSTS_USER_SUCCESS';
-export const FETCH_USER_POSTS_FAIL = 'FETCH_POSTS_USER_FAIL';
-
-export const DELETE_USER_POST = 'DELETE_USER_POST';
-export const DELETE_USER_POST_START = 'DELETE_USER_POST_START';
-export const DELETE_USER_POST_SUCCESS = 'DELETE_USER_POST_SUCCESS';
-export const DELETE_USER_POST_FAIL = 'DELETE_USER_POST_FAIL';
-
-export const ADD_USER_POST = 'ADD_USER_POST';
-export const ADD_USER_POST_START = 'ADD_USER_POST_START';
-export const ADD_USER_POST_SUCCESS = 'ADD_USER_POST_SUCCESS';
-export const ADD_USER_POST_FAIL = 'ADD_USER_POST_FAIL';
-
-export const FETCH_COMMENTS = 'FETCH_COMMENTS';
-export const FETCH_COMMENTS_START = 'FETCH_COMMENTS_START';
-export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
-export const FETCH_COMMENTS_FAIL = 'FETCH_COMMENTS_FAIL';
-
-export const ADD_COMMENT = 'ADD_COMMENT';
-export const ADD_COMMENT_START = 'ADD_COMMENT_START';
-export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
-export const ADD_COMMENT_FAIL = 'ADD_COMMENT_FAIL';
-
-export const CLEAR_COMMENTS_LOADED = 'CLEAR_COMMENTS_LOADED';
+export const CLEAR_COMMENTS_LOADED = actionTypeCreator('CLEAR_COMMENTS_LOADED', 'sync');
+export const FETCH_USERS           = actionTypeCreator('FETCH_USERS', 'async');
+export const FETCH_USER_POSTS      = actionTypeCreator('FETCH_USER_POSTS', 'async');
+export const DELETE_USER_POST      = actionTypeCreator('DELETE_USER_POST', 'async');
+export const ADD_USER_POST         = actionTypeCreator('ADD_USER_POST', 'async');
+export const FETCH_COMMENTS        = actionTypeCreator('FETCH_COMMENTS', 'async');
+export const ADD_COMMENT           = actionTypeCreator('ADD_COMMENT', 'async');

@@ -1,0 +1,31 @@
+@import '../../../styles/colors';
+
+.AddFormField {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1.7rem;
+
+    input,
+    textarea {
+      width: 70%;
+      padding: .5rem;
+      font-size: inherit;
+      border: 1px solid $border-color;
+      font-family: inherit;
+    }
+    textarea {
+      height: 15rem;
+      resize: vertical;
+    }
+  }
+
+  p {
+    margin-left: 30%;
+    font-size: 1.5rem;
+    color: darkred;
+  }
+}

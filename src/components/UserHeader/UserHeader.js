@@ -1,10 +1,16 @@
-import React from 'react';
+import React             from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { withRouter } from 'react-router-dom';
+import { withRouter }    from 'react-router-dom';
 
 import classes from './UserHeader.module.scss';
 
-const userHeader = props => {
+const UserHeader = props => {
+  const {
+    postDetails,
+    loadingDeleting,
+    buttonAction
+  } = props;
+
   return (
     <div className={classes.UserHeader}>
       <p onClick={() => props.history.goBack()}>
@@ -12,17 +18,20 @@ const userHeader = props => {
         <span>Back</span>
       </p>
       <h2>{props.location.state.userName}</h2>
-      {props.postDetails ?
-        <>{props.loadingDeleting ?
-          <span style={{fontSize: '1.5rem'}}>Deleting...</span>
-          : <FontAwesomeIcon onClick={props.buttonAction} icon="times-circle" size="3x" />}</>
-      : <FontAwesomeIcon onClick={props.buttonAction} icon="plus-circle" size="3x" />
+
+      {postDetails ?
+        <>{loadingDeleting ?
+          <span style={{fontSize: '1.5rem'}}>
+            Deleting...
+          </span>
+          : <FontAwesomeIcon onClick={buttonAction} icon="times-circle" size="3x" />}</>
+          : <FontAwesomeIcon onClick={buttonAction} icon="plus-circle"  size="3x" />
       }
     </div>
   )
 };
 
-export default withRouter(userHeader);
+export default withRouter(UserHeader);
 
 
 

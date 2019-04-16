@@ -1,74 +1,51 @@
 import api from '../../api';
+import { commentsEndpoint } from '../../constants/actionsEndPoints';
 import {
-  FETCH_COMMENTS_START,
-  FETCH_COMMENTS_SUCCESS,
-  FETCH_COMMENTS_FAIL,
+  FETCH_COMMENTS,
   CLEAR_COMMENTS_LOADED,
-  ADD_COMMENT_START,
-  ADD_COMMENT_SUCCESS,
-  ADD_COMMENT_FAIL
+  ADD_COMMENT
 } from './actionTypes';
 
-export const fetchComments = (postId, loaded) => {
-  return dispatch => {
-    if (!loaded) {
-      dispatch(fetchCommentsStart());
-      api.get(`/comments?postId=${postId}`)
-        .then(response => dispatch(fetchCommentsSuccess(response.data)))
-        .catch(error => dispatch(fetchCommentsFail()));
-    }
+
+
+/********** FETCH COMMENTS ACTIONS **********/
+export const fetchComments = (postId, loaded) => dispatch => {
+  if (!loaded) {
+    dispatch(fetchCommentsStart());
+    api.get(`${commentsEndpoint}?postId=${postId}`)
+      .then(response => dispatch(fetchCommentsSuccess(response.data)))
+      .catch(error => dispatch(fetchCommentsFail()));
   }
 };
 
-export const fetchCommentsStart = () => {
-  return {
-    type: FETCH_COMMENTS_START
-  }
+export const fetchCommentsStart = () => ({type: FETCH_COMMENTS.START});
+
+export const fetchCommentsSuccess = comments => ({
+  type: FETCH_COMMENTS.SUCCESS,
+  comments: comments,
+});
+
+export const fetchCommentsFail = () => ({type: FETCH_COMMENTS.FAIL});
+
+export const clearCommentsLoaded = () => ({type: CLEAR_COMMENTS_LOADED});
+/*******************************************/
+
+
+
+/********** ADD COMMENT ACTIONS **********/
+export const addComment = commentData => dispatch => {
+  dispatch(addCommentStart());
+  api.post(commentsEndpoint, {...commentData})
+    .then(response => dispatch(addCommentSuccess(response.data)))
+    .catch(error => dispatch(addCommentFail()));
 };
 
-export const fetchCommentsSuccess = comments => {
-  return {
-    type: FETCH_COMMENTS_SUCCESS,
-    comments: comments,
-  }
-};
+export const addCommentStart = () => ({type: ADD_COMMENT.START});
 
-export const fetchCommentsFail = () => {
-  return {
-    type: FETCH_COMMENTS_FAIL
-  }
-};
-
-export const clearCommentsLoaded = () => {
-  return {
-    type: CLEAR_COMMENTS_LOADED
-  }
-};
-
-export const addComment = commentData => {
-  return dispatch => {
-    dispatch(addCommentStart());
-    api.post('/comments', {...commentData})
-      .then(response => dispatch(addCommentSuccess(response.data)))
-      .catch(error => dispatch(addCommentFail()));
-  }
-};
-
-export const addCommentStart = () => {
-  return {
-    type: ADD_COMMENT_START
-  }
-};
-
-export const addCommentSuccess = comment => {
-  return {
-    type: ADD_COMMENT_SUCCESS,
+export const addCommentSuccess = comment => ({
+    type: ADD_COMMENT.SUCCESS,
     comment: comment
-  }
-};
+});
 
-export const addCommentFail = () => {
-  return {
-    type: ADD_COMMENT_FAIL
-  }
-};
+export const addCommentFail = () => ({type: ADD_COMMENT.FAIL});
+/*****************************************/

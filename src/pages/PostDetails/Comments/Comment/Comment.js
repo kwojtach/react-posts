@@ -2,16 +2,19 @@ import React from 'react';
 
 import classes from './Comment.module.scss';
 
-const comment = props => {
+const Comment = ({ comment }) => {
   return (
     <div className={classes.Comment}>
       <span>
-        <h3>{props.comment.name}</h3>
-        <a href={`mailto:${props.comment.email}`}>{props.comment.email}</a>
+        <h3>{comment.name}</h3>
+        <a href={`mailto:${comment.email}`}>
+          {comment.email}
+        </a>
       </span>
-      <p>{props.comment.body}</p>
+
+      <p>{comment.body}</p>
     </div>
   )
 };
 
-export default comment;
+export default Comment;

@@ -1,31 +1,38 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { connect }          from 'react-redux';
 
-import User from './User/User';
-import Spinner from '../../components/UI/Spinner/Spinner';
-import { fetchUsers } from '../../store/actions/users';
+import User      from './User/User';
+import Spinner   from '../../components/UI/Spinner/Spinner';
 import withError from '../../hoc/withError/withError';
+import classes   from './Users.module.scss';
 
-import classes from './Users.module.scss';
+import { fetchUsers } from '../../store/actions/users';
 
 class Users extends Component {
   componentDidMount() {
-    this.props.onFetchUsers();
+    this.props.fetchUsers();
   }
 
   render() {
-    let users = <Spinner>Loading users...</Spinner>;
-    if (!this.props.loadingUsers) {
-      users = this.props.users.map( user => (
+    const {
+      loadingUsers,
+      users,
+    } = this.props;
+
+    let usersList = <Spinner>Loading users...</Spinner>;
+
+    if (!loadingUsers) {
+      usersList = users.map( user => (
         <User
-          key={user.id}
-          user={user} />
+          key  ={user.id}
+          user ={user}
+        />
       ))
     }
 
     return (
       <div className={classes.Users}>
-        {users}
+        {usersList}
       </div>
     );
   }
@@ -33,15 +40,11 @@ class Users extends Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.users.users,
+    users:        state.users.users,
     loadingUsers: state.users.loadingUsers
   }
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onFetchUsers: () => dispatch(fetchUsers())
-  }
-};
+const mapDispatchToProps = { fetchUsers };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withError(Users));

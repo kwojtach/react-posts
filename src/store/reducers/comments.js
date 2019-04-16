@@ -1,11 +1,7 @@
 import {
-  FETCH_COMMENTS_START,
-  FETCH_COMMENTS_SUCCESS,
-  FETCH_COMMENTS_FAIL,
+  FETCH_COMMENTS,
   CLEAR_COMMENTS_LOADED,
-  ADD_COMMENT_START,
-  ADD_COMMENT_SUCCESS,
-  ADD_COMMENT_FAIL
+  ADD_COMMENT
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -17,19 +13,20 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case (FETCH_COMMENTS_START):
+
+    case (FETCH_COMMENTS.START):
       return {
         ...state,
         loadingComments: true
       };
-    case (FETCH_COMMENTS_SUCCESS):
+    case (FETCH_COMMENTS.SUCCESS):
       return {
         ...state,
         comments: [...action.comments],
         loadingComments: false,
         commentsLoaded: true
       };
-    case (FETCH_COMMENTS_FAIL):
+    case (FETCH_COMMENTS.FAIL):
       return {
         ...state,
         loadingComments: false,
@@ -39,22 +36,24 @@ const reducer = (state = initialState, action) => {
         ...state,
         commentsLoaded: false
       };
-    case (ADD_COMMENT_START):
+
+    case (ADD_COMMENT.START):
       return {
         ...state,
         loadingAddingComment: true
       };
-    case (ADD_COMMENT_SUCCESS):
+    case (ADD_COMMENT.SUCCESS):
       return {
         ...state,
         comments: [action.comment, ...state.comments],
         loadingAddingComment: false
       };
-    case (ADD_COMMENT_FAIL):
+    case (ADD_COMMENT.FAIL):
       return {
         ...state,
         loadingAddingComment: false,
       };
+
     default:
       return state
   }

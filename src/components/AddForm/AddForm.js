@@ -1,8 +1,11 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import React            from 'react';
+import { Formik, Form } from 'formik';
 
-import Button from '../UI/Button/Button';
-import classes from './AddForm.module.scss';
+import Button       from '../UI/Button/Button';
+import AddFormField from './AddFormField/AddFormField';
+import classes      from './AddForm.module.scss';
+
+import { initialValues, validate } from './AddFormField/validateForm';
 
 /**
  * addForm component using Formik:
@@ -25,49 +28,38 @@ import classes from './AddForm.module.scss';
  * onSubmitForm - function executed on submit form e.g. adding a Post
  * formSubmitted - value to disable submit button while sending request (true or false)
  */
-const addForm = props => {
+
+const AddForm = props => {
+  const {
+    title,
+    fields,
+    additionalFormData,
+    closeForm,
+    onSubmitForm,
+    formSubmitted
+  } = props;
+
+  const onSubmit = values => onSubmitForm({...values, ...additionalFormData});
+
   return (
     <div className={classes.AddForm}>
-      <h3>{props.title}</h3>
+      <h3>{title}</h3>
       <Formik
-        initialValues={props.fields.reduce((acc, curr) => ({ ...acc, [curr.name]: '' }), {})}
-        validate={values => {
-          let errors = {};
-          if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-            errors.email = 'Invalid email address';
-          }
-
-          for (let key in values) {
-            if (!values[key]) {
-              errors[key] = `${key} is required`;
-            }
-          }
-          return errors;
-        }}
-        onSubmit={(values) => {
-          props.onSubmitForm({...values, ...props.additionalFormData})
-        }}
+        initialValues={initialValues(fields)}
+        validate={validate}
+        onSubmit={onSubmit}
       >
         <Form>
-          {props.fields.map((item, index) => (
-            <div className={classes.InputContainer} key={index}>
-              <Field
-                name={item.name}
-                render={({ field }) => (
-                  <label>
-                    <span>{item.label}</span>
-                    {item.type === 'textarea' ?
-                      <textarea {...field} />
-                      : <input {...field} type={item.type} />}
-                  </label>
-                )} />
-              <ErrorMessage name={item.name} component="p" />
-            </div>
-          ))}
+          {fields.map(formField =>
+            <AddFormField
+              formField={formField}
+              key={formField.name}
+            />
+          )}
 
           <div className={classes.ButtonsContainer}>
-            <Button type='reset' whiteButton clicked={() => props.closeForm()}>Cancel</Button>
-            <Button type='submit' disabled={props.formSubmitted}>{!props.formSubmitted ? 'Save' : 'Loading...'}</Button>
+            <Button type='reset' whiteButton onClick={() => closeForm()}>Cancel</Button>
+            <Button type='submit' disabled={formSubmitted}>{!formSubmitted ? 'Save' : 'Loading...'}</Button>
           </div>
         </Form>
       </Formik>
@@ -75,4 +67,4 @@ const addForm = props => {
   )
 };
 
-export default addForm;
+export default AddForm;

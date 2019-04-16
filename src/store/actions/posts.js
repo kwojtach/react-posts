@@ -1,103 +1,75 @@
 import api from '../../api';
+import { postsEndpoint } from '../../constants/actionsEndPoints';
 import {
-  FETCH_USER_POSTS_START,
-  FETCH_USER_POSTS_SUCCESS,
-  FETCH_USER_POSTS_FAIL,
-  DELETE_USER_POST_START,
-  DELETE_USER_POST_SUCCESS,
-  DELETE_USER_POST_FAIL,
-  ADD_USER_POST_START,
-  ADD_USER_POST_SUCCESS,
-  ADD_USER_POST_FAIL
+  FETCH_USER_POSTS,
+  DELETE_USER_POST,
+  ADD_USER_POST
 } from '../actions/actionTypes';
 
-export const fetchUserPosts = userId => {
-  return dispatch => {
-    dispatch(fetchUserPostsStart());
-    api.get(`/posts?userId=${userId}`)
-      .then(response => dispatch(fetchUserPostsSuccess(response.data)))
-      .catch(error => dispatch(fetchUserPostsFail()));
-  }
-};
-
-export const fetchUserPostsStart = () => {
-  return {
-    type: FETCH_USER_POSTS_START
-  }
-};
-
-export const fetchUserPostsSuccess = posts => {
-  return {
-    type: FETCH_USER_POSTS_SUCCESS,
-    posts: posts
-  };
-};
-
-export const fetchUserPostsFail = () => {
-  return {
-    type: FETCH_USER_POSTS_FAIL
-  }
-};
-
-export const deleteUserPost = (postId, changeRoute) => {
-  return dispatch => {
-    dispatch(deleteUserPostStart(postId));
-    api.delete(`/posts/${postId}`)
-      .then(response => {
-        if (changeRoute) changeRoute();
-        dispatch(deleteUserPostSuccess(postId));
-      })
-      .catch(error => dispatch(deleteUserPostFail()));
-  }
-};
-
-export const deleteUserPostStart = postId => {
-  return {
-    type: DELETE_USER_POST_START,
-    postId: postId
-  }
-};
-
-export const deleteUserPostSuccess = postId => {
-  return {
-    type: DELETE_USER_POST_SUCCESS,
-    postId: postId
-  }
-};
-
-export const deleteUserPostFail = () => {
-  return {
-    type: DELETE_USER_POST_FAIL
-  }
-};
 
 
-export const addUserPost = postData => {
-  return dispatch => {
-    dispatch(addUserPostStart());
-    api.post('/posts', {...postData})
-      .then(response => {
-        dispatch(addUserPostSuccess(response.data))
-      })
-      .catch(error => dispatch(addUserPostFail()));
-  }
+/********** FETCH USER POSTS ACTIONS **********/
+export const fetchUserPosts = userId => dispatch => {
+  dispatch(fetchUserPostsStart());
+  api.get(`${postsEndpoint}?userId=${userId}`)
+    .then(response => dispatch(fetchUserPostsSuccess(response.data)))
+    .catch(error => dispatch(fetchUserPostsFail()));
 };
 
-export const addUserPostStart = () => {
-  return {
-    type: ADD_USER_POST_START
-  }
+export const fetchUserPostsStart = () => ({type: FETCH_USER_POSTS.START});
+
+export const fetchUserPostsSuccess = posts => ({
+  type: FETCH_USER_POSTS.SUCCESS,
+  posts: posts
+});
+
+export const fetchUserPostsFail = () => ({type: FETCH_USER_POSTS.FAIL});
+/**********************************************/
+
+
+
+/********** DELETE USER POST ACTIONS **********/
+export const deleteUserPost = (postId, changeRoute) => dispatch => {
+  dispatch(deleteUserPostStart(postId));
+  api.delete(`${postsEndpoint}/${postId}`)
+    .then(response => {
+      if (changeRoute) changeRoute();
+      dispatch(deleteUserPostSuccess(postId));
+    })
+    .catch(error => dispatch(deleteUserPostFail()));
 };
 
-export const addUserPostSuccess = post => {
-  return {
-    type: ADD_USER_POST_SUCCESS,
-    post: post
-  }
+export const deleteUserPostStart = postId => ({
+  type: DELETE_USER_POST.START,
+  postId: postId
+});
+
+export const deleteUserPostSuccess = postId => ({
+  type: DELETE_USER_POST.SUCCESS,
+  postId: postId
+});
+
+export const deleteUserPostFail = () => ({type: DELETE_USER_POST.FAIL});
+/**********************************************/
+
+
+
+/********** ADD USER POST ACTIONS **********/
+export const addUserPost = postData => dispatch => {
+  dispatch(addUserPostStart());
+  api.post(postsEndpoint, {...postData})
+    .then(response => {
+      dispatch(addUserPostSuccess(response.data))
+    })
+    .catch(error => dispatch(addUserPostFail()));
 };
 
-export const addUserPostFail = () => {
-  return {
-    type: ADD_USER_POST_FAIL
-  }
-};
+export const addUserPostStart = () => ({type: ADD_USER_POST.START});
+
+export const addUserPostSuccess = post => ({
+  type: ADD_USER_POST.SUCCESS,
+  post: post
+});
+
+export const addUserPostFail = () => ({type: ADD_USER_POST.FAIL});
+/*******************************************/

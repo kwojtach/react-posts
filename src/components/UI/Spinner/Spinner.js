@@ -2,7 +2,7 @@ import React from 'react';
 
 import classes from './Spinner.module.scss';
 
-const spinner = props => (
+const Spinner = props => (
   <>
     <div className={classes.Spinner}>
       <div></div>
@@ -11,4 +11,4 @@ const spinner = props => (
   </>
 );
 
-export default spinner;
+export default Spinner;

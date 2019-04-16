@@ -1,34 +1,25 @@
 import api from '../../api';
+import { usersEndpoint } from '../../constants/actionsEndPoints';
 import {
-  FETCH_USERS_START,
-  FETCH_USERS_SUCCESS,
-  FETCH_USERS_FAIL
+  FETCH_USERS
 } from './actionTypes';
 
-export const fetchUsers = () => {
-  return dispatch => {
-    dispatch(fetchUsersStart());
-    api.get('/users')
-      .then(response => dispatch(fetchUsersSuccess(response.data)))
-      .catch(error => dispatch(fetchUsersFail()));
-  };
+
+
+/********** FETCH USERS ACTIONS **********/
+export const fetchUsers = () => dispatch => {
+  dispatch(fetchUsersStart());
+  api.get(usersEndpoint)
+    .then(response => dispatch(fetchUsersSuccess(response.data)))
+    .catch(error => dispatch(fetchUsersFail()));
 };
 
-export const fetchUsersStart = () => {
-  return {
-    type: FETCH_USERS_START,
-  }
-};
+export const fetchUsersStart = () => ({type: FETCH_USERS.START});
 
-export const fetchUsersSuccess = users => {
-  return {
-    type: FETCH_USERS_SUCCESS,
-    users: users
-  };
-};
+export const fetchUsersSuccess = users => ({
+  type: FETCH_USERS.SUCCESS,
+  users: users
+});
 
-export const fetchUsersFail = () => {
-  return {
-    type: FETCH_USERS_FAIL
-  }
-};
+export const fetchUsersFail = () => ({type: FETCH_USERS.FAIL});
+/*****************************************/

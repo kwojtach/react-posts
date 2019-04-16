@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { toast } from 'react-toastify';
+import { toast }            from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 import api from '../../api';
@@ -11,15 +11,11 @@ const withError = WithErrorComponent => {
     };
 
     reqInterceptor = api.interceptors.request.use( request => {
-      this.setState({
-        error: null
-      });
+      this.setState({ error: null });
       return request;
     });
     resInterceptor = api.interceptors.response.use( response => response, error => {
-      this.setState({
-        error: error
-      });
+      this.setState({ error: error });
     });
 
     componentWillUnmount () {
@@ -28,9 +24,7 @@ const withError = WithErrorComponent => {
     }
 
     onErrorCloseHandler = () => {
-      this.setState({
-        error: null
-      });
+      this.setState({ error: null });
     };
 
     render() {
@@ -40,9 +34,10 @@ const withError = WithErrorComponent => {
             toast.error(this.state.error.message, {
               position: "top-center",
               autoClose: false,
-              onClose: this.onErrorCloseHandler,
-              toastId: 3
+              onClose:   this.onErrorCloseHandler,
+              toastId:   3
             }) : null}
+
           <WithErrorComponent {...this.props}/>
         </>
       )

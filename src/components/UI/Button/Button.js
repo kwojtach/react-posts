@@ -1,27 +1,20 @@
 import React from 'react';
 
-import classes from './Button.module.scss';
+import { whiteButton } from '../../../styles/buttonStyle';
+import classes         from './Button.module.scss';
 
-const button = props => {
-  let buttonStyle;
-  if (props.whiteButton) {
-    buttonStyle = {
-      backgroundColor: '#fff',
-      color: '#3498db',
-      border: '1px solid #3498db'
-    }
-  }
-
+const Button = props => {
   return (
     <button
-      className={classes.Button}
-      style={buttonStyle}
-      onClick={props.clicked}
-      type={props.type}
-      disabled={props.disabled} >
+      className ={classes.Button}
+      style     ={props.whiteButton ? whiteButton : null}
+      onClick   ={props.onClick}
+      type      ={props.type}
+      disabled  ={props.disabled}
+    >
       {props.children}
     </button>
   )
 };
 
-export default button;
+export default Button;
