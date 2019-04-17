@@ -1,7 +1,7 @@
 import React    from 'react';
 import { Link } from 'react-router-dom';
 
-import Button  from '../../../components/UI/Button/Button';
+import Button  from '../../../../components/UI/Button/Button';
 import classes from './User.module.scss';
 
 const User = ({ user }) => {

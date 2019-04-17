@@ -2,11 +2,11 @@ import React from 'react';
 
 import classes from './Spinner.module.scss';
 
-const Spinner = props => (
+const Spinner = ({ children }) => (
   <>
     <div className={classes.Spinner}>
       <div></div>
-      <p>{props.children}</p>
+      <p>{children}</p>
     </div>
   </>
 );

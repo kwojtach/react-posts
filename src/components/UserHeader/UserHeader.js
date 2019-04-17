@@ -8,16 +8,18 @@ const UserHeader = props => {
   const {
     postDetails,
     loadingDeleting,
-    buttonAction
+    buttonAction,
+    history: { goBack },
+    location:{state: { userName }}
   } = props;
 
   return (
     <div className={classes.UserHeader}>
-      <p onClick={() => props.history.goBack()}>
+      <p onClick={goBack}>
         <FontAwesomeIcon icon="arrow-left" size="3x" />
         <span>Back</span>
       </p>
-      <h2>{props.location.state.userName}</h2>
+      <h2>{userName}</h2>
 
       {postDetails ?
         <>{loadingDeleting ?

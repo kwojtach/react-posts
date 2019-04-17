@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
 
-import User      from './User/User';
+import UsersList from './UsersList/UsersList';
 import Spinner   from '../../components/UI/Spinner/Spinner';
 import withError from '../../hoc/withError/withError';
 import classes   from './Users.module.scss';
@@ -19,20 +19,11 @@ class Users extends Component {
       users,
     } = this.props;
 
-    let usersList = <Spinner>Loading users...</Spinner>;
-
-    if (!loadingUsers) {
-      usersList = users.map( user => (
-        <User
-          key  ={user.id}
-          user ={user}
-        />
-      ))
-    }
-
     return (
       <div className={classes.Users}>
-        {usersList}
+        {!loadingUsers ?
+          <UsersList users={users}/>
+          : <Spinner>Loading users...</Spinner>}
       </div>
     );
   }

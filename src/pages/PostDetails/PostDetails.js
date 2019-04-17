@@ -14,7 +14,8 @@ import {
   clearCommentsLoaded,
   addComment
 } from '../../store/actions/comments';
-import { deleteUserPost } from '../../store/actions/posts';
+import { deleteUserPost }   from '../../store/actions/posts';
+import { newCommentFields } from '../../constants/addFormFields';
 
 class PostDetails extends Component {
   // variable created to stop "setState" when component will unmount (when post was deleted)
@@ -57,8 +58,7 @@ class PostDetails extends Component {
       loadingComments,
       comments,
       match:    {params:{ postId }},
-      location: {state: { postTitle }},
-      location: {state: { postText }},
+      location: {state: { postTitle, postText }},
       history:  {goBack}
     } = this.props;
 
@@ -66,12 +66,8 @@ class PostDetails extends Component {
       <>
         <Modal show={this.state.addingComment} >
           <AddForm
-            title={'Add comment'}
-            fields={[
-              {type: 'text',     name: 'name',  label: 'Name'},
-              {type: 'email',    name: 'email', label: 'Email'},
-              {type: 'textarea', name: 'body',  label: 'Body'}
-            ]}
+            title              ={'Add comment'}
+            fields             ={newCommentFields}
             additionalFormData ={{postId: postId}}
             closeForm          ={this.onStartAddingCommentHandler}
             onSubmitForm       ={addComment}
@@ -91,8 +87,8 @@ class PostDetails extends Component {
         </div>
 
         <div className={classes.ButtonsContainer}>
-          <Button onClick={() => this.onShowCommentsHandler()}>{!this.state.showComments ? 'Show comments' : 'Hide comments'}</Button>
-          {this.state.showComments ? <Button onClick={() => this.onStartAddingCommentHandler()}>Add comment</Button> : null}
+          <Button onClick={this.onShowCommentsHandler}>{!this.state.showComments ? 'Show comments' : 'Hide comments'}</Button>
+          {this.state.showComments ? <Button onClick={this.onStartAddingCommentHandler}>Add comment</Button> : null}
         </div>
 
         <Comments

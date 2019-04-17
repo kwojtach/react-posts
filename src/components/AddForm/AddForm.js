@@ -45,20 +45,20 @@ const AddForm = props => {
     <div className={classes.AddForm}>
       <h3>{title}</h3>
       <Formik
-        initialValues={initialValues(fields)}
-        validate={validate}
-        onSubmit={onSubmit}
+        initialValues ={initialValues(fields)}
+        validate      ={validate}
+        onSubmit      ={onSubmit}
       >
         <Form>
           {fields.map(formField =>
             <AddFormField
-              formField={formField}
-              key={formField.name}
+              formField ={formField}
+              key       ={formField.name}
             />
           )}
 
           <div className={classes.ButtonsContainer}>
-            <Button type='reset' whiteButton onClick={() => closeForm()}>Cancel</Button>
+            <Button type='reset' whiteButton onClick={closeForm}>Cancel</Button>
             <Button type='submit' disabled={formSubmitted}>{!formSubmitted ? 'Save' : 'Loading...'}</Button>
           </div>
         </Form>

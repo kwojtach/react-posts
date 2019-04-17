@@ -15,7 +15,14 @@ const withError = WithErrorComponent => {
       return request;
     });
     resInterceptor = api.interceptors.response.use( response => response, error => {
-      this.setState({ error: error });
+      this.setState({ error: error }, () => {
+        toast.error(this.state.error.message, {
+          position: "top-center",
+          autoClose: false,
+          onClose:   this.onErrorCloseHandler,
+          toastId:   3
+        })
+      });
     });
 
     componentWillUnmount () {
@@ -28,19 +35,7 @@ const withError = WithErrorComponent => {
     };
 
     render() {
-      return (
-        <>
-          {this.state.error ?
-            toast.error(this.state.error.message, {
-              position: "top-center",
-              autoClose: false,
-              onClose:   this.onErrorCloseHandler,
-              toastId:   3
-            }) : null}
-
-          <WithErrorComponent {...this.props}/>
-        </>
-      )
+      return ( <WithErrorComponent {...this.props}/> )
     }
   }
 };

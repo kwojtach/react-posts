@@ -3,7 +3,7 @@ import { connect }          from 'react-redux';
 
 import Spinner    from '../../components/UI/Spinner/Spinner';
 import UserHeader from '../../components/UserHeader/UserHeader';
-import UserPost   from './UserPost/UserPost';
+import UserPosts  from './UserPosts/UserPosts';
 import Modal      from '../../components/UI/Modal/Modal';
 import AddForm    from '../../components/AddForm/AddForm';
 import withError  from '../../hoc/withError/withError';
@@ -13,6 +13,7 @@ import {
   deleteUserPost,
   addUserPost
 } from '../../store/actions/posts';
+import { newPostFields } from '../../constants/addFormFields';
 
 class UserDetails extends Component {
   componentDidMount() {
@@ -33,33 +34,16 @@ class UserDetails extends Component {
       loadingDeleting,
       deletingPostId,
       addUserPost,
-      match:{params:{userId}},
+      match:{params:{ userId }},
       loadingAddingPost
     } = this.props;
-
-    let postsList = <Spinner>Loading posts...</Spinner>;
-
-    if (!loadingPosts) {
-      postsList = posts.map( post => (
-        <UserPost
-          key             ={post.id}
-          post            ={post}
-          deleteUserPost  ={deleteUserPost}
-          loadingDeleting ={loadingDeleting}
-          deletingPostId  ={deletingPostId}
-        />
-      ))
-    }
 
     return (
       <>
         <Modal show={this.state.addingPost} >
           <AddForm
-            title ={'Add post'}
-            fields={[
-              {type: 'text',     name: 'title', label: 'Title'},
-              {type: 'textarea', name: 'body',  label: 'Body'}
-            ]}
+            title              ={'Add post'}
+            fields             ={newPostFields}
             additionalFormData ={{userId: userId}}
             closeForm          ={this.onStartAddingPostHandler}
             onSubmitForm       ={addUserPost}
@@ -67,9 +51,16 @@ class UserDetails extends Component {
           />
         </Modal>
 
-        <UserHeader buttonAction={() => this.onStartAddingPostHandler()} />
+        <UserHeader buttonAction={this.onStartAddingPostHandler} />
 
-        {postsList}
+        {!loadingPosts ?
+          <UserPosts
+            posts           ={posts}
+            deleteUserPost  ={deleteUserPost }
+            loadingDeleting ={loadingDeleting}
+            deletingPostId  ={deletingPostId }
+          />
+        : <Spinner>Loading posts...</Spinner>}
       </>
     );
   }
