@@ -1,3 +1,5 @@
+// @flow
+
 import React            from 'react';
 import { Formik, Form } from 'formik';
 
@@ -29,7 +31,20 @@ import { initialValues, validate } from './AddFormField/validateForm';
  * formSubmitted - value to disable submit button while sending request (true or false)
  */
 
-const AddForm = props => {
+type Props = {
+  title: string,
+  fields: Array<{
+    type:  string,
+    name:  string,
+    label: string
+  }>,
+  additionalFormData?: Object,
+  closeForm?:   Event => void,
+  onSubmitForm: Event => void,
+  formSubmitted: boolean
+};
+
+const AddForm = (props : Props) => {
   const {
     title,
     fields,

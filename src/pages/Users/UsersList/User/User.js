@@ -1,10 +1,13 @@
-import React    from 'react';
-import { Link } from 'react-router-dom';
+// @flow
+
+import React     from 'react';
+import { Link }  from 'react-router-dom';
+import type {UserProps} from '../../../../types/components';
 
 import Button  from '../../../../components/UI/Button/Button';
 import classes from './User.module.scss';
 
-const User = ({ user }) => {
+const User = ({ user } : {user : UserProps}) => {
   return (
     <div className={classes.User}>
       <h2>{user.name}</h2>

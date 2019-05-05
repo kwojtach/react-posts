@@ -1,9 +1,19 @@
+// @flow
+
 import React                 from 'react';
 import {ErrorMessage, Field} from 'formik';
 
 import classes from './AddFormField.module.scss';
 
-const AddFormField = ({ formField }) => (
+type Props = {
+  formField: {
+    name:  string,
+    type:  string,
+    label: string
+  }
+};
+
+const AddFormField = ({ formField } : Props) => (
   <div className={classes.AddFormField}>
     <Field
       name={formField.name}
@@ -19,5 +29,6 @@ const AddFormField = ({ formField }) => (
     <ErrorMessage name={formField.name} component="p" />
   </div>
 );
+
 
 export default AddFormField;

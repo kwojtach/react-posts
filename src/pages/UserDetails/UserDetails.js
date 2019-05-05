@@ -1,5 +1,9 @@
+// @flow
+
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
+import type {Location}      from 'react-router-dom';
+import type {UserPostProps} from '../../types/components';
 
 import Spinner    from '../../components/UI/Spinner/Spinner';
 import UserHeader from '../../components/UserHeader/UserHeader';
@@ -15,7 +19,24 @@ import {
 } from '../../store/actions/posts';
 import { newPostFields } from '../../constants/addFormFields';
 
-class UserDetails extends Component {
+type Props = {
+  loadingPosts: boolean,
+  posts: Array<UserPostProps>,
+  deleteUserPost:  number => void,
+  loadingDeleting: boolean,
+  deletingPostId:  number,
+  addUserPost: Function,
+  match:{params:{ userId : number }},
+  loadingAddingPost: boolean,
+  fetchUserPosts: number => void,
+  location: Location
+};
+
+type State = {
+  addingPost: boolean
+};
+
+export class UserDetails extends Component<Props, State> {
   componentDidMount() {
     this.props.fetchUserPosts(this.props.location.state.userId);
   }

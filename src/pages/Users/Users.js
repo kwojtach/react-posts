@@ -1,5 +1,8 @@
+// @flow
+
 import React, { Component } from 'react';
 import { connect }          from 'react-redux';
+import type {UserProps}     from '../../types/components';
 
 import UsersList from './UsersList/UsersList';
 import Spinner   from '../../components/UI/Spinner/Spinner';
@@ -8,7 +11,13 @@ import classes   from './Users.module.scss';
 
 import { fetchUsers } from '../../store/actions/users';
 
-class Users extends Component {
+type Props = {
+  fetchUsers: Function,
+  loadingUsers: boolean,
+  users: Array<UserProps>
+};
+
+export class Users extends Component<Props> {
   componentDidMount() {
     this.props.fetchUsers();
   }

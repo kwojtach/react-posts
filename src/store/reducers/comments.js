@@ -1,8 +1,20 @@
+// @flow
+
 import {
   FETCH_COMMENTS,
   CLEAR_COMMENTS_LOADED,
   ADD_COMMENT
 } from '../actions/actionTypes';
+
+import type {CommentProps} from '../../types/components';
+import type {Action} from '../../types/actions';
+
+type State = {
+  +comments: Array<CommentProps>,
+  +loadingComments: boolean,
+  +commentsLoaded: boolean,
+  +loadingAddingComment: boolean,
+};
 
 const initialState = {
   comments: [],
@@ -11,7 +23,7 @@ const initialState = {
   loadingAddingComment: false,
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state : State = initialState, action : Action) => {
   switch (action.type) {
 
     case (FETCH_COMMENTS.START):

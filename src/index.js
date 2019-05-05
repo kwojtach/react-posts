@@ -1,3 +1,5 @@
+// @flow
+
 import React        from 'react';
 import ReactDOM     from 'react-dom';
 import { Provider } from 'react-redux';
@@ -16,9 +18,12 @@ const rootReducer = combineReducers({
   posts:    postsReducer,
   comments: commentsReducer
 });
+
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+const root : any = document.getElementById('root');
+
+ReactDOM.render(<Provider store={store}><App /></Provider>, root);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

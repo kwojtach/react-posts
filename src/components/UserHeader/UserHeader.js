@@ -1,10 +1,21 @@
+// @flow
+
 import React             from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { withRouter }    from 'react-router-dom';
+import type {Location, RouterHistory} from 'react-router-dom';
 
 import classes from './UserHeader.module.scss';
 
-const UserHeader = props => {
+type Props = {
+  postDetails?: any,
+  loadingDeleting?: boolean,
+  buttonAction?: Event => void,
+  history: RouterHistory,
+  location: Location
+};
+
+export const UserHeader = (props : Props) => {
   const {
     postDetails,
     loadingDeleting,

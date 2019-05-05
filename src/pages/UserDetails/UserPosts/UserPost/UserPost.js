@@ -1,11 +1,23 @@
-import React               from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link }            from 'react-router-dom';
-import { withRouter }      from 'react-router-dom';
+// @flow
+
+import React                from 'react';
+import { FontAwesomeIcon }  from '@fortawesome/react-fontawesome';
+import { Link }             from 'react-router-dom';
+import { withRouter }       from 'react-router-dom';
+import type {UserPostProps} from '../../../../types/components';
+import type {Location} from 'react-router-dom';
 
 import classes from './UserPost.module.scss';
 
-const UserPost = props => {
+type Props = {
+  loadingDeleting : boolean,
+  deleteUserPost: number => void,
+  deletingPostId: number,
+  post: UserPostProps,
+  location : Location
+};
+
+export const UserPost = (props : Props) => {
   const {
     loadingDeleting,
     deleteUserPost,

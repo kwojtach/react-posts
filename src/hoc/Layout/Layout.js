@@ -1,9 +1,12 @@
+// @flow
+
 import React              from 'react';
+import type {Node}        from 'react';
 import { ToastContainer } from 'react-toastify';
 
 import classes from './Layout.module.scss';
 
-const Layout = ({ children }) =>  (
+const Layout = ({ children } : {children : Node}) =>  (
   <>
     <ToastContainer style={{fontSize: '1.5rem'}}/>
 

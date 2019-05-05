@@ -22,11 +22,28 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "SET NODE_ENV=test&& mocha --require @babel/register --require src/test/helpers.js --require src/test/dom.js --require ignore-styles --recursive src/test/**/*.test.js",
+    "eject": "react-scripts eject",
+    "flow": "flow"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.4.4",
+    "@babel/register": "^7.4.4",
+    "babel-plugin-inline-react-svg": "^1.1.0",
+    "babel-preset-react-app-babel-7": "^4.0.2-0",
+    "chai": "^4.2.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "flow-bin": "^0.98.0",
+    "flow-typed": "^2.5.1",
+    "ignore-styles": "^5.0.1",
+    "jsdom": "^15.0.0",
+    "mocha": "^6.1.4",
+    "sinon": "^7.3.2"
   },
   "browserslist": [
     ">0.2%",

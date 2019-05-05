@@ -1,3 +1,5 @@
-export const commentsEndpoint = '/comments';
-export const postsEndpoint    = '/posts';
-export const usersEndpoint    = '/users';
+// @flow
+
+export const commentsEndpoint : string = '/comments';
+export const postsEndpoint    : string = '/posts';
+export const usersEndpoint    : string = '/users';

@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component, Suspense }   from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
@@ -13,7 +15,7 @@ const PostDetails = React.lazy(() => import('./pages/PostDetails/PostDetails'));
 
 icons();
 
-class App extends Component {
+class App extends Component<{}> {
   render() {
     return (
       <BrowserRouter>

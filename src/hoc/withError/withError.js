@@ -1,22 +1,31 @@
-import React, { Component } from 'react';
-import { toast }            from 'react-toastify';
+// @flow
+
+import React, { Component }     from 'react';
+import type {AbstractComponent} from 'react';
+import { toast }                from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 import api from '../../api';
 
-const withError = WithErrorComponent => {
-  return class extends Component {
+type State = {
+  error : boolean
+}
+
+function withError<Config : {}> (
+  WithErrorComponent: AbstractComponent<Config>
+):AbstractComponent<Config> {
+  return class extends Component<Config, State> {
     state = {
-      error: null
+      error: false
     };
 
     reqInterceptor = api.interceptors.request.use( request => {
-      this.setState({ error: null });
+      this.setState({ error: false });
       return request;
     });
     resInterceptor = api.interceptors.response.use( response => response, error => {
-      this.setState({ error: error }, () => {
-        toast.error(this.state.error.message, {
+      this.setState({ error: true }, () => {
+        toast.error(error.message, {
           position: "top-center",
           autoClose: false,
           onClose:   this.onErrorCloseHandler,
@@ -31,13 +40,13 @@ const withError = WithErrorComponent => {
     }
 
     onErrorCloseHandler = () => {
-      this.setState({ error: null });
+      this.setState({ error: false });
     };
 
     render() {
       return ( <WithErrorComponent {...this.props}/> )
     }
   }
-};
+}
 
 export default withError;

@@ -1,8 +1,21 @@
+// @flow
+
 import {
   FETCH_USER_POSTS,
   DELETE_USER_POST,
   ADD_USER_POST
 } from '../actions/actionTypes';
+
+import type {UserPostProps} from '../../types/components';
+import type {Action} from '../../types/actions';
+
+type State = {
+  +posts: Array<UserPostProps>,
+  +deletingPostId: number | null,
+  +loadingPosts: boolean,
+  +loadingDeleting: boolean,
+  +loadingAddingPost: boolean,
+};
 
 const initialState = {
   posts: [],
@@ -12,7 +25,7 @@ const initialState = {
   loadingAddingPost: false,
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state : State = initialState, action : Action) => {
   switch (action.type) {
 
     case (FETCH_USER_POSTS.START):
@@ -39,9 +52,10 @@ const reducer = (state = initialState, action) => {
         loadingDeleting: true
       };
     case (DELETE_USER_POST.SUCCESS):
+      const newPosts : Array<UserPostProps> = state.posts.filter(post => post.id !== action.postId);
       return {
         ...state,
-        posts: state.posts.filter(post => post.id !== action.postId),
+        posts: newPosts,
         loadingDeleting: false
       };
     case (DELETE_USER_POST.FAIL):

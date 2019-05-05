@@ -1,10 +1,18 @@
-import React from 'react';
+// @flow
+
+import React       from 'react';
+import type {Node} from 'react';
 
 import Backdrop       from './Backdrop/Backdrop';
 import { modalStyle } from '../../../styles/modalStyle';
 import classes        from './Modal.module.scss';
 
-const Modal = props => (
+type Props = {
+  show:     boolean,
+  children: Node
+};
+
+const Modal = (props : Props) => (
   <>
     <Backdrop show={props.show} />
     <div

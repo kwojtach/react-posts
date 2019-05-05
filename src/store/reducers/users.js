@@ -1,14 +1,23 @@
+// @flow
+
 import {
   FETCH_USERS
 } from '../actions/actionTypes';
 
+import type {UserProps} from '../../types/components';
+import type {Action} from '../../types/actions';
+
+type State = {
+  +users: Array<UserProps>,
+  +loadingUsers: boolean,
+};
+
 const initialState = {
   users: [],
-  userDetails: [],
   loadingUsers: false,
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state : State = initialState, action : Action) => {
   switch (action.type) {
 
     case (FETCH_USERS.START):

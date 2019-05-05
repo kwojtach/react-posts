@@ -1,5 +1,9 @@
+// @flow
+
 import React, { Component } from 'react';
-import { connect }          from "react-redux";
+import { connect }          from 'react-redux';
+import type {CommentProps}  from '../../types/components';
+import type {RouterHistory} from 'react-router-dom';
 
 import UserHeader from '../../components/UserHeader/UserHeader';
 import Button     from '../../components/UI/Button/Button';
@@ -17,11 +21,31 @@ import {
 import { deleteUserPost }   from '../../store/actions/posts';
 import { newCommentFields } from '../../constants/addFormFields';
 
-class PostDetails extends Component {
+type Props = {
+  clearCommentsLoaded:  Function,
+  fetchComments:        (number, boolean) => void,
+  addComment:           Function,
+  deleteUserPost:       (number, ?Function) => void,
+  history:              RouterHistory,
+  commentsLoaded:       boolean,
+  loadingAddingComment: boolean,
+  loadingDeleting:      boolean,
+  loadingComments:      boolean,
+  comments: Array<CommentProps>,
+  match:    {params:{ postId : number }},
+  location: {state: { postTitle : string, postText : string }}
+};
+
+type State = {
+  showComments:  boolean,
+  addingComment: boolean
+}
+
+export class PostDetails extends Component<Props, State> {
   // variable created to stop "setState" when component will unmount (when post was deleted)
   _isUnMounted = false;
 
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps(nextProps : Props){
     if (!this._isUnMounted) {
       if (nextProps.commentsLoaded) this.setState({ showComments: true });
     }
